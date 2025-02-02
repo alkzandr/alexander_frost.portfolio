@@ -26,19 +26,19 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content }
 }
 
-function getmdxfiles(dir) {
-  return fs.readdirsync(dir).filter((file) => path.extname(file) === '.mdx')
+function getMDXFiles(dir) {
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
 }
 
-function readmdxfile(filepath) {
-  let rawcontent = fs.readfilesync(filepath, 'utf-8')
-  return parsefrontmatter(rawcontent)
+function readMDXFile(filePath) {
+  let rawContent = fs.readFileSync(filePath, 'utf-8')
+  return parseFrontmatter(rawContent)
 }
 
-function getmdxdata(dir) {
-  let mdxfiles = getmdxfiles(dir)
-  return mdxfiles.map((file) => {
-    let { metadata, content } = readmdxfile(path.join(dir, file))
+function getMDXData(dir) {
+  let mdxFiles = getMDXFiles(dir)
+  return mdxFiles.map((file) => {
+    let { metadata, content } = readMDXFile(path.join(dir, file))
     let slug = path.basename(file, path.extname(file))
 
     return {
@@ -49,42 +49,42 @@ function getmdxdata(dir) {
   })
 }
 
-export function getblogposts() {
-  return getmdxdata(path.join(process.cwd(), 'app', 'blog', 'posts'))
+export function getBlogPosts() {
+  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
 }
 
-export function formatdate(date: string, includerelative = false) {
-  let currentdate = new date()
-  if (!date.includes('t')) {
-    date = `${date}t00:00:00`
+export function formatDate(date: string, includeRelative = false) {
+  let currentDate = new Date()
+  if (!date.includes('T')) {
+    date = `${date}T00:00:00`
   }
-  let targetdate = new date(date)
+  let targetDate = new Date(date)
 
-  let yearsago = currentdate.getfullyear() - targetdate.getfullyear()
-  let monthsago = currentdate.getmonth() - targetdate.getmonth()
-  let daysago = currentdate.getdate() - targetdate.getdate()
+  let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear()
+  let monthsAgo = currentDate.getMonth() - targetDate.getMonth()
+  let daysAgo = currentDate.getDate() - targetDate.getDate()
 
-  let formatteddate = ''
+  let formattedDate = ''
 
-  if (yearsago > 0) {
-    formatteddate = `${yearsago}y ago`
-  } else if (monthsago > 0) {
-    formatteddate = `${monthsago}mo ago`
-  } else if (daysago > 0) {
-    formatteddate = `${daysago}d ago`
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`
   } else {
-    formatteddate = 'today'
+    formattedDate = 'Today'
   }
 
-  let fulldate = targetdate.tolocalestring('en-us', {
+  let fullDate = targetDate.toLocaleString('en-us', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   })
 
-  if (!includerelative) {
-    return fulldate
+  if (!includeRelative) {
+    return fullDate
   }
 
-  return `${fulldate} (${formatteddate})`
+  return `${fullDate} (${formattedDate})`
 }
