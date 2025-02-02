@@ -8,7 +8,7 @@ export default function Page() {
       </h1>
       <h2 className="mb-4 text-xl font-medium">Electrical Engineer</h2>
       <p className="mb-4">
-        {`I am Alex Frost, a final-year Electrical Engineering student at the University of Wollongong.`}
+        {`This is a showcase of projects I have completed as an Electrical Engineer`}
       </p>
       <div className="my-8">
         <BlogPosts />
