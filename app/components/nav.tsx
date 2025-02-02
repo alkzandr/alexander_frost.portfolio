@@ -5,10 +5,10 @@ const navItems = {
     name: 'home',
   },
   '/blog': {
-    name: 'blog',
+    name: 'projects',
   },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
+  'https://www.linkedin.com/in/alexander-frost-0469981a5/': {
+    name: 'LinkedIn',
   },
 }
 
