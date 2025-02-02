@@ -6,12 +6,10 @@ export default function Page() {
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
         My Portfolio
       </h1>
+      <h2 className="mb-4 text-xl font-medium">Electrical Engineer</h2>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        {`I am a final-year Electrical Engineering student at the University of Wollongong, 1 part-time semester away from having completed all my coursework, and I am eager to apply my technical knowledge and problem-solving skills in a practical environment. With a solid foundation in engineering, a passion for problem-solving, and experience in drafting technical diagrams and liaising with vendors professionally, I am confident I can add significant value to the company.
+`}
       </p>
       <div className="my-8">
         <BlogPosts />
