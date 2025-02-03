@@ -6,7 +6,8 @@ export default function Page() {
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
        Alex Frost
       </h1>
-      <h2 className="mb-4 text-xl font-medium">Electrical Engineer</h2>
+      <h2 className="mb-2 text-xl font-medium">Electrical Engineer</h2>
+      <h3 className="mb-1 text-lg font-normal text-gray-600">Wollongong, NSW</h3>
       <p className="mb-4">
         {`This is a showcase of projects I have completed as an Electrical Engineer`}
       </p>
