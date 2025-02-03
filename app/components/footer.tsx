@@ -50,7 +50,7 @@ export default function Footer() {
             href="https://vercel.com/templates/next.js/portfolio-starter-kit"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">view source</p>
+            <p className="ml-2 h-7">contact me</p>
           </a>
         </li>
       </ul>

@@ -3,10 +3,10 @@ import { BlogPosts } from 'app/components/posts'
 export default function Page() {
   return (
     <section>
-      <h1 className="mb-2 text-2xl font-semibold tracking-tighter">
+      <h1 className="mb-1 text-2xl font-semibold tracking-tighter">
        Alex Frost
       </h1>
-      <h2 className="mb-2 text-xl font-medium">Electrical Engineer</h2>
+      <h2 className="mb-1 text-xl font-medium">Electrical Engineer</h2>
       <h3 className="mb-8 text-lg font-normal text-gray-600">Wollongong, NSW</h3>
       <p className="mb-4">
         {`This is a showcase of projects I have completed as an Electrical Engineer`}

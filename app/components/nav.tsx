@@ -11,7 +11,7 @@ const navItems = {
     name: 'education',
   },
   '': {
-    name: 'Work Experience',
+    name: 'work experience',
   },
 }
 
