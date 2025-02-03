@@ -8,7 +8,7 @@ const navItems = {
     name: 'projects',
   },
   'https://www.linkedin.com/in/alexander-frost-0469981a5/': {
-    name: 'linkedin',
+    name: 'education',
   },
 }
 
