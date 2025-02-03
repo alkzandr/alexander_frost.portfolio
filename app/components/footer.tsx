@@ -24,7 +24,7 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="/rss"
+            href="/resume.pdf"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">resume</p>
@@ -36,7 +36,6 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
             href="https://www.linkedin.com/in/alexander-frost-0469981a5/"
-
           >
             <ArrowIcon />
             <p className="ml-2 h-7">linkdin</p>
@@ -47,7 +46,7 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://vercel.com/templates/next.js/portfolio-starter-kit"
+            href="mailto:alexanderfrost.creativework@gmail.com?subject=Subject%20of%20Email&body=Body%20of%20Email"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">contact me</p>
