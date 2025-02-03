@@ -10,6 +10,9 @@ const navItems = {
   'https://www.linkedin.com/in/alexander-frost-0469981a5/': {
     name: 'education',
   },
+  '': {
+    name: 'Work Experience',
+  },
 }
 
 export function Navbar() {
