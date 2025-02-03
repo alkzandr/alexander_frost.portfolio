@@ -7,10 +7,10 @@ const navItems = {
   '/blog': {
     name: 'projects',
   },
-  'https://www.linkedin.com/in/alexander-frost-0469981a5/': {
+  '\education': {
     name: 'education',
   },
-  '\workExperience': {
+  '\work_exp': {
     name: 'work experience',
   },
 }
