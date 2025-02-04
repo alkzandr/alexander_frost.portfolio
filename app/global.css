@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+/* Force Dark Mode */
+html {
+  min-width: 360px;
+  background-color: #121212;  /* Dark background */
+  color: #ffffff;  /* Light text for dark mode */
+  color-scheme: dark; /* Inform the browser that we're using dark mode */
+}
+
+/* Styling for text selection */
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
@@ -17,25 +26,16 @@
   --sh-entity: #e25a1c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
-  }
-  html {
-    color-scheme: dark;
-  }
-}
-
+/* Override other dark mode variables */
 html {
-  min-width: 360px;
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
 }
 
 .prose .anchor {
   @apply absolute invisible no-underline;
-
   margin-left: -1em;
   padding-right: 0.5em;
   width: 80%;
