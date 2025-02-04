@@ -46,7 +46,7 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
             target="_blank"
-            href="mailto:alexanderfrost.creativework@gmail.com?subject=Subject%20of%20Email&body=Body%20of%20Email"
+            href="mailto:alex@afengi.dev?subject=Subject%20of%20Email&body=Body%20of%20Email"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">contact me</p>
