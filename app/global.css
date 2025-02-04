@@ -43,93 +43,53 @@ html {
   --sh-string: #0fa295;
 }
 
-.prose .anchor {
-  @apply absolute invisible no-underline;
-  margin-left: -1em;
-  padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
-  cursor: pointer;
-}
-
-.anchor:hover {
-  @apply visible;
-}
-
-.prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
-}
-
-.prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
-}
-
-.prose *:hover > .anchor {
-  @apply visible;
-}
-
-.prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
-}
-
-.prose code {
-  @apply px-1 py-0.5 rounded-lg;
-}
-
-.prose pre code {
-  @apply p-0;
-  border: initial;
-  line-height: 1.5;
-}
-
-.prose code span {
-  @apply font-medium;
-}
-
-.prose img {
-  /* Don't apply styles to next/image */
-  @apply m-0;
+/* Improve text readability within the .prose container (for blog posts) */
+.prose {
+  color: #e0e0e0; /* Light gray text for blog content */
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  color: #e0e0e0; /* Ensure paragraphs have a light color */
 }
 
-.prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+.prose a {
+  color: #7bb9f0; /* Lighter link color for dark mode */
 }
 
-.prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: #e0e0e0; /* Ensure headings are light */
 }
 
-.prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+.prose code {
+  color: #f0f0f0; /* Light color for code text */
 }
 
-.prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+.prose pre {
+  background-color: #1e1e1e; /* Dark background for code blocks */
+  color: #f0f0f0; /* Light code text */
+}
+
+/* Add anchors to the code block */
+.prose pre code {
+  background-color: transparent;
+}
+
+/* Ensure anchor link visibility */
+.prose .anchor {
+  color: #7bb9f0;
+}
+
+/* Additional styling for elements within prose */
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
 }
 
 .prose strong {
   @apply font-medium;
 }
 
-.prose ul {
-  @apply list-disc pl-6;
-}
-
-.prose ol {
-  @apply list-decimal pl-6;
-}
-
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
+/* Fix any issues with scrollbars for preformatted text */
 pre::-webkit-scrollbar {
   display: none;
 }
