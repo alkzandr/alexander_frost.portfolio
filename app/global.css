@@ -8,7 +8,16 @@ html {
   color-scheme: dark; /* Inform the browser that we're using dark mode */
 }
 
-/* Styling for text selection */
+/* Override dark mode colors for text to ensure readability */
+body {
+  color: #e0e0e0; /* Light gray text for better contrast */
+}
+
+a, .prose p, .prose h1, .prose h2, .prose h3, .prose h4, .prose code {
+  color: #e0e0e0; /* Use a consistent light text color */
+}
+
+/* Additional dark mode settings */
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;
