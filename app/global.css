@@ -58,6 +58,31 @@ html {
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
   color: #e0e0e0; /* Ensure headings are light */
+  font-weight: 600; /* Make the headings bold */
+}
+
+.prose h1 {
+  font-size: 2.25rem;  /* Size for main headings */
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.75rem;  /* Size for subheadings */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;  /* Size for smaller subheadings */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;  /* Size for minor subheadings */
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .prose code {
