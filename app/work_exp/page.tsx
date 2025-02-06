@@ -15,7 +15,7 @@ export default function WorkExperience() {
             <p className="mt-2 dark:text-black">
               Assisted with the creation of technical diagrams and blueprints, ensuring accuracy and clarity in the drafting process for electrical systems, as well as extensively using communication skills to liaise with vendors and develop strong workplace relationships.
             </p>
-            <ul className="list-disc pl- dark:text-black6">
+            <ul className="list-disc pl- dark:text-black">
               <li>Creating technical diagrams and blueprints</li>
               <li>Liaising with vendors to ensure project success</li>
               <li>Developing strong workplace relationships through communication</li>
