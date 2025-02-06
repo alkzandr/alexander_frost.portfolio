@@ -1,5 +1,5 @@
 import { BlogPosts } from "app/components/posts"; // Fix path if necessary
-import MagneticButton from "app/components/MagneticButton";
+import MagneticButton from "app/components/magneticButton";
 
 export default function Home() {
   return (
