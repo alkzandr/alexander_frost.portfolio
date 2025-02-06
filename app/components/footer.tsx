@@ -38,7 +38,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/alexander-frost-0469981a5/"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">linkdin</p>
+            <p className="ml-2 h-7">linkedin</p>
           </a>
         </li>
         <li>
