@@ -1,7 +1,7 @@
 export default function WorkExperience() {
   return (
     <section>
-      <h1 className="text-2xl font-semibold">My Education and Major Acheivements</h1>
+      <h1 className="text-2xl font-semibold">My Education and Major Achievements</h1>
       <p className="mb-4">
         Below is an overview of my education and major achievements throughout my career.
       </p>
