@@ -19,20 +19,21 @@
   --sh-entity: #e25a1c;
 }
 
-/* Ensure dark mode styling */
+/* Force consistent background color on all devices */
 html {
   min-width: 360px;
-  background-color: #121212;  /* Dark background */
-  color: #ffffff;  /* Light text for dark mode */
-  color-scheme: dark;
+  background-color: #121212;  /* Black background */
+  color: #ffffff;  /* White text */
+  color-scheme: dark; /* Ensures proper contrast */
 }
 
-/* Force dark mode in the browser */
+/* Remove dark mode control */
 html.dark {
-  background-color: #121212;  /* Dark background */
-  color: #ffffff;  /* Light text */
+  background-color: #121212;  /* Black background */
+  color: #ffffff;  /* White text */
 }
 
+/* Prose styling */
 .prose .anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;
@@ -141,19 +142,19 @@ table {
   text-wrap: balance;
 }
 
-/* Force dark mode for blog post titles on the homepage */
-.home-page .post-title, /* Target if specific class is used */
+/* Force consistent light mode for blog post titles on the homepage */
+.home-page .post-title,
 .prose .post-title,
 h2, h3, h4 {
-  color: #e0e0e0;  /* Light text color for headings */
+  color: #ffffff;  /* White text color for headings */
   font-weight: 600; /* Bold font for headings */
   font-size: 1.75rem; /* Set appropriate size (adjust as needed) */
   margin-top: 1rem;  /* Add spacing above titles */
   margin-bottom: 1rem;  /* Add spacing below titles */
 }
 
-/* Optional: Additional custom dark mode styling for page-wide consistency */
+/* Optional: Additional custom styling */
 html {
-  background-color: #121212; /* Dark background */
-  color: #ffffff;  /* Light text */
+  background-color: #121212; /* Black background */
+  color: #ffffff;  /* White text */
 }
