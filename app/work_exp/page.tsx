@@ -7,15 +7,15 @@ export default function WorkExperience() {
       </p>
 
       <div className="mt-8">
-        <h2 className="ext-xl font-bold text-black">Previous Jobs</h2>
+        <h2 className="mb-1 text-xl font-medium">Previous Jobs</h2>
         <div className="mt-6 space-y-4">
           <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
             <h3 className="mb-1 text-2xl font-semibold tracking-tighter">Draftsperson | Molenaar x McNeice</h3>
-            <p className="text-sm text-gray-600">June 2021 - Current</p>
-            <p className="mt-2 text-gray-700">
+            <p className="text-sm">June 2021 - Current</p>
+            <p className="mt-2">
               Assisted with the creation of technical diagrams and blueprints, ensuring accuracy and clarity in the drafting process for electrical systems, as well as extensively using communication skills to liaise with vendors and develop strong workplace relationships.
             </p>
-            <ul className="list-disc pl-6 text-gray-700">
+            <ul className="list-disc pl-6">
               <li>Creating technical diagrams and blueprints</li>
               <li>Liaising with vendors to ensure project success</li>
               <li>Developing strong workplace relationships through communication</li>
