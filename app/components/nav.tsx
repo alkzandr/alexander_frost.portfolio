@@ -8,7 +8,7 @@ const navItems = {
     name: 'projects',
   },
   '\education': {
-    name: 'education and acheivements',
+    name: 'education and achievements',
   },
   '\work_exp': {
     name: 'work experience',
