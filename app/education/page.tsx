@@ -11,7 +11,7 @@ export default function WorkExperience() {
         <div className="mt-6 space-y-4">
           <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
             <h3 className="mb-1 text-2xl font-semibold tracking-tighter dark:text-black">Bachelor of Engineering (Honours) (Electrical Engineering) | University of Wollongong </h3>
-            <p className="text-sm">Expected Graduation: July 2025 </p>
+            <p className="text-sm dark:text-black">Expected Graduation: July 2025 </p>
           </div>
           {/* Add more jobs as needed */}
         </div>
