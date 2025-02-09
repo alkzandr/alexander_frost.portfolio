@@ -2,30 +2,26 @@
 
 import Image from "next/image"
 import { BlogPosts } from "app/components/posts"
-import { useEffect, useState } from "react"
 
 export default function Page() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  useEffect(() => {
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)")
-    setIsDarkMode(darkMode.matches)
-
-    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches)
-    darkMode.addEventListener("change", handleChange)
-
-    return () => darkMode.removeEventListener("change", handleChange)
-  }, [])
-
   return (
     <section>
       <div className="flex items-center mb-4">
+        {/* Light mode logo (default) */}
         <Image
-          src={isDarkMode ? "/logo_light.png" : "/logo_dark.png"}
+          src="/logo_dark.png"
           alt="Alex Frost Logo"
           width={40}
           height={40}
-          className="mr-4"
+          className="mr-4 block dark:hidden"
+        />
+        {/* Dark mode logo */}
+        <Image
+          src="/logo_light.png"
+          alt="Alex Frost Logo"
+          width={40}
+          height={40}
+          className="mr-4 hidden dark:block"
         />
         <div>
           <h1 className="mb-1 text-2xl font-semibold tracking-tighter">
