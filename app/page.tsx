@@ -4,15 +4,6 @@ import { BlogPosts } from "app/components/posts"
 export default function Page() {
   return (
     <section>
-      <div className="flex items-center mb-4">
-        <Image
-          src="/images/logo_light.png"
-          alt="Alex Frost Logo"
-          width={40}
-          height={40}
-          className="mr-4"
-        />
-        <div>
           <h1 className="mb-1 text-2xl font-semibold tracking-tighter">
             Alex Frost
           </h1>
