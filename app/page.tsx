@@ -1,13 +1,33 @@
+import Image from 'next/image'
 import { BlogPosts } from 'app/components/posts'
+import { useEffect, useState } from 'react'
 
 export default function Page() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setTheme(darkMode ? 'dark' : 'light')
+  }, [])
+
   return (
     <section>
-      <h1 className="mb-1 text-2xl font-semibold tracking-tighter">
-       Alex Frost
-      </h1>
-      <h2 className="mb-1 text-xl font-medium">Electrical Engineer</h2>
-      <h3 className="mb-8 text-lg font-normal text-gray-600">Wollongong, NSW</h3>
+      <div className="flex items-center mb-4">
+        <Image
+          src={theme === 'dark' ? '/logo_light.png' : '/logo_dark.png'}
+          alt="Alex Frost Logo"
+          width={40}
+          height={40}
+          className="mr-4"
+        />
+        <div>
+          <h1 className="mb-1 text-2xl font-semibold tracking-tighter">
+            Alex Frost
+          </h1>
+          <h2 className="mb-1 text-xl font-medium">Electrical Engineer</h2>
+          <h3 className="mb-8 text-lg font-normal text-gray-600">Wollongong, NSW</h3>
+        </div>
+      </div>
       <p className="mb-4">
         {`This is a showcase of various academic and personal projects I have completed throughout my career`}
       </p>
