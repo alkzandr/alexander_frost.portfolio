@@ -25,15 +25,13 @@ export function Navbar() {
           id="nav"
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center">
             <Image
               src="/images/logo_light.png"
               alt="Alex Frost Logo"
               width={40}
               height={40}
-              className="mr-2"
             />
-            <span className="text-xl font-semibold">Alex Frost</span>
           </Link>
 
           {/* Navigation Links */}
