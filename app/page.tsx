@@ -1,22 +1,27 @@
 "use client"
 
-import Image from 'next/image'
-import { BlogPosts } from 'app/components/posts'
-import { useEffect, useState } from 'react'
+import Image from "next/image"
+import { BlogPosts } from "app/components/posts"
+import { useEffect, useState } from "react"
 
 export default function Page() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setTheme(darkMode ? 'dark' : 'light')
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)")
+    setIsDarkMode(darkMode.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches)
+    darkMode.addEventListener("change", handleChange)
+
+    return () => darkMode.removeEventListener("change", handleChange)
   }, [])
 
   return (
     <section>
       <div className="flex items-center mb-4">
         <Image
-          src={theme === 'dark' ? '/logo_light.png' : '/logo_dark.png'}
+          src={isDarkMode ? "/logo_light.png" : "/logo_dark.png"}
           alt="Alex Frost Logo"
           width={40}
           height={40}
