@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const navItems = {
   '/': {
@@ -7,10 +8,10 @@ const navItems = {
   '/blog': {
     name: 'projects',
   },
-  '\education': {
+  '/education': {
     name: 'education and achievements',
   },
-  '\work_exp': {
+  '/work_exp': {
     name: 'work experience',
   },
 }
@@ -20,10 +21,23 @@ export function Navbar() {
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          className="flex flex-row items-center justify-between px-4 py-2 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
-          <div className="flex flex-row space-x-0 pr-10">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/images/logo_light.png"
+              alt="Alex Frost Logo"
+              width={40}
+              height={40}
+              className="mr-2"
+            />
+            <span className="text-xl font-semibold">Alex Frost</span>
+          </Link>
+
+          {/* Navigation Links */}
+          <div className="flex flex-row space-x-4">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
