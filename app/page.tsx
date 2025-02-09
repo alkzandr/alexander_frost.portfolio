@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import { BlogPosts } from 'app/components/posts'
 import { useEffect, useState } from 'react'
