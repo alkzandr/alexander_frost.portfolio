@@ -1,0 +1,58 @@
+---
+title: 'Banking API, parsing JSON data and making a Terminal User Interface'
+publishedAt: '2025-02-02'
+summary: 'Use of the Up Bank API to create a terminal client to check my spending and saving bank balance'
+---
+
+Since Up Bank is an online bank, it is primarily app-based and thus is a "mobile-only product", meaning that does not have a banking website accessible from a laptop or PC.
+For this reason I decided to make a Teminal User Interface (TUI) to make it easy for me to check bank balance when making purchases on my laptop without needing my phone.
+This project aims to teach me the fundamentals of:
+* Fetching data from an API
+* Parsing JSON data into structs in rust
+* Developing a simple user interface to interact with the data
+
+## Requesting data from the API
+
+## Deserialising data from JSON
+
+```rust
+#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+struct Balance {
+    #[serde(rename = "currencyCode")]
+    currency_code: String,
+    value: String,
+    #[serde(rename = "valueInBaseUnits")]
+    value_in_base_units: i32,
+}
+
+#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+struct AccountAttributes {
+    #[serde(rename = "displayName")]
+    display_name: String,
+    #[serde(rename = "accountType")]
+    account_type: String,
+    #[serde(rename = "ownershipType")]
+    ownership_type: String,
+    balance: Balance,
+    #[serde(rename = "createdAt")]
+    created_at: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+struct Account {
+    #[serde(rename = "id")]
+    account_id: String,
+    #[serde(rename = "attributes")]
+    attributes: AccountAttributes,
+}
+
+#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+struct ApiResponse {
+    data: Vec<Account>,
+}
+```
+
+## Making the Terminal User Interface
+
+
+## Conclusion
