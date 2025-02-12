@@ -103,6 +103,7 @@ fn main() {
     println!("Data saved to {}", file_path);
 }
 ```
+Other ways to store the data such as .CSV or SQL databases were explored, but this would be over-engineering for this relatively simple data structure.
 
 ## Making the Terminal User Interface
 Making the terminal interface was actually far more difficult than anticipated, but utilising the "RatatUI" docs and their examples, I was able to produce the following program:
@@ -186,14 +187,16 @@ impl Widget for &App {
 ```
 
 <>
-  <img src="/images/TUI1.png" alt="Alt text" width="400" height="300" />
+  <img src="/images/TUI1.png" alt="Alt text" width="600" height="500" />
 </>
 
 <>
-  <img src="/images/TUI2.png" alt="Alt text" width="400" height="300" />
+  <img src="/images/TUI2.png" alt="Alt text" width="600" height="500" />
 </>
 
 
-*Balances are forged for privacy reasons
+*Balances are forged for privacy reasons.
 
 ## Conclusion
+This project challenged me, since I have yet to get much experience with APIs, JSON data parsing and coding in Rust.
+Despite this, the project has taught me good fundamental understanding of the processes required when performing this sort of task.
