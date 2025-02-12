@@ -12,11 +12,35 @@ This project aims to teach me the fundamentals of:
 * Developing a simple user interface to interact with the data
 
 ## Requesting data from the API
-
-## Deserialising data from JSON
+This project uses the "reqwest" rust crate (library) in order to request the JSON data from the API using a unique API token.
 
 ```rust
-#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+    let token = env::var("UP_API_TOKEN").expect("UP_API_TOKEN not set in environment variables");
+    let url = "https://api.up.com.au/api/v1/accounts";
+    let client = Client::new();
+    let response_text = client
+        .get(url)
+        .bearer_auth(token)
+        .send()
+        .expect("Request failed")
+        .text()
+        .expect("Failed to read response");
+```
+
+## Deserialising data from JSON and Writing to local data storage
+
+The following code fetches JSON data from the API into a local JSON file (data storage for analytics) that can then be parsed into rust structs for values of account name, account type, balance, etc.
+
+Note: Variables are converted from camelCase to snake_case as this is convention in rust.
+
+```rust
+use reqwest::blocking::Client;
+use serde::{Deserialize, Serialize};
+use std::env;
+use std::fs::File;
+use std::io::Write;
+
+#[derive(Debug, Deserialize, Serialize)]
 struct Balance {
     #[serde(rename = "currencyCode")]
     currency_code: String,
@@ -25,7 +49,7 @@ struct Balance {
     value_in_base_units: i32,
 }
 
-#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+#[derive(Debug, Deserialize, Serialize)]
 struct AccountAttributes {
     #[serde(rename = "displayName")]
     display_name: String,
@@ -38,7 +62,7 @@ struct AccountAttributes {
     created_at: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+#[derive(Debug, Deserialize, Serialize)]
 struct Account {
     #[serde(rename = "id")]
     account_id: String,
@@ -46,13 +70,130 @@ struct Account {
     attributes: AccountAttributes,
 }
 
-#[derive(Debug, Deserialize, Serialize)]  // Add Serialize trait
+#[derive(Debug, Deserialize, Serialize)]
 struct ApiResponse {
     data: Vec<Account>,
 }
 ```
+Data is then saved to a local JSON file in order to graph data such as bank balances over time.
+This is not the best way to do this, but for a small project like this, storing local JSON files is acceptable.
+
+```rust
+fn main() {
+    let token = env::var("UP_API_TOKEN").expect("UP_API_TOKEN not set in environment variables");
+    let url = "https://api.up.com.au/api/v1/accounts";
+
+    let client = Client::new();
+    let response_text = client
+        .get(url)
+        .bearer_auth(token)
+        .send()
+        .expect("Request failed")
+        .text()
+        .expect("Failed to read response");
+
+    // Deserialize the raw JSON into structured data
+    let response: ApiResponse = serde_json::from_str(&response_text).expect("Failed to parse JSON");
+
+    // Save data to JSON file
+    let file_path = "accounts_balance.json";
+    let file = File::create(file_path).expect("Failed to create file");
+    serde_json::to_writer_pretty(&file, &response).expect("Failed to write JSON to file");
+
+    println!("Data saved to {}", file_path);
+}
+```
 
 ## Making the Terminal User Interface
+Making the terminal interface was actually far more difficult than anticipated, but utilising the "RatatUI" docs and their examples, I was able to produce the following program:
 
+
+```rust
+impl Widget for &App {
+    fn render(self, area: Rect, buf: &mut Buffer) {
+        let title = Line::from(" Up Bank CLI ".bold());
+        let instructions = Line::from(vec![
+            " Next Tab ".into(),
+            "<Tab>".blue().bold(),
+            " Prev Tab ".into(),
+            "<Shift+Tab>".blue().bold(),
+            " Quit ".into(),
+            "<Q> ".blue().bold(),
+        ]);
+        let block = Block::bordered()
+            .title(title.centered())
+            .title_bottom(instructions.centered())
+            .border_set(border::THICK);
+
+        let tabs = Tabs::new(vec!["Spending Accounts", "Savings Accounts", "Investments", "Transactions"].iter().cloned())
+            .select(self.tab_index)
+            .block(Block::bordered());
+
+        // Access the first account's data from api_response
+        let display_name1 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(0)).map_or("N/A", |account| &account.attributes.display_name);
+        let account_id1 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(0)).map_or("N/A", |account| &account.account_id);
+        let balance1 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(0)).map_or("N/A", |account| &account.attributes.balance.value);
+        let account_type1 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(0)).map_or("N/A", |account| &account.attributes.account_type);
+        let currency_code1 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(0)).map_or("N/A", |account| &account.attributes.balance.currency_code);
+        let display_name2 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(1)).map_or("N/A", |account| &account.attributes.display_name);
+        let account_id2 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(1)).map_or("N/A", |account| &account.account_id);
+        let balance2 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(1)).map_or("N/A", |account| &account.attributes.balance.value);
+        let account_type2 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(1)).map_or("N/A", |account| &account.attributes.account_type);
+        let currency_code2 = self.api_response.as_ref().and_then(|api_response| api_response.data.get(1)).map_or("N/A", |account| &account.attributes.balance.currency_code);
+
+        let content = match self.tab_index {
+            0 => Text::from(vec![
+                Line::from(vec!["Display Name: ".into(), display_name1.yellow()]),
+                //Line::from(vec!["Account ID: ".into(), account_id1.yellow()]),
+                Line::from(vec!["Account Type: ".into(), account_type1.yellow()]),
+                Line::from(vec![
+                    "Balance: ".into(),
+                    balance1.yellow(),
+                    " ".into(),
+                    currency_code1.yellow(),
+                ])
+            ]),
+
+
+
+
+
+
+
+            1 => Text::from(vec![
+                Line::from(vec!["Display Name: ".into(), display_name2.yellow()]),
+                //Line::from(vec!["Account ID: ".into(), account_id2.yellow()]),
+                Line::from(vec!["Account Type: ".into(), account_type2.yellow()]),
+                Line::from(vec![
+                    "Balance: ".into(),
+                    balance2.yellow(),
+                    " ".into(),
+                    currency_code2.yellow(),
+                ])
+            ]),
+
+            2 => Text::from("Settings Tab: Adjust settings here."),
+            3 => Text::from("Spending trends graphed or a transactions search algorithm?"),
+            _ => unreachable!(),
+        };
+
+        let content_paragraph = Paragraph::new(content).centered().block(block);
+
+        tabs.render(area, buf);
+        content_paragraph.render(area, buf);
+    }
+}
+```
+
+<>
+  <img src="/images/TUI1.png" alt="Alt text" width="400" height="300" />
+</>
+
+<>
+  <img src="/images/TUI2.png" alt="Alt text" width="400" height="300" />
+</>
+
+
+*Balances are forged for privacy reasons
 
 ## Conclusion
